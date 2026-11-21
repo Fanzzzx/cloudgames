@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>AwanPlay</title>
+  <meta name="description" content="Demo antarmuka cloud gaming. Semua game fiktif dan hanya simulasi.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site">
+    <div class="inner">
+      <a class="logo" href="#top" aria-label="AwanPlay">
+        <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M11 29a7 7 0 0 1-.6-13.97A9 9 0 0 1 27.7 12.5 7.5 7.5 0 0 1 28.5 29Z" fill="#7cc4ff"/><path d="M17 17.5v9l8-4.5Z" fill="#0d1322"/></svg>
+        AwanPlay
+      </a>
+      <div class="controls">
+        <div class="field">
+          <label for="region">Server</label>
+          <select id="region">
+            <option value="jkt">Jakarta</option>
+            <option value="sgp">Singapura</option>
+            <option value="tyo">Tokyo</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="quality">Kualitas</label>
+          <select id="quality">
+            <option value="720">720p · 12 Mbps</option>
+            <option value="1080" selected>1080p · 24 Mbps</option>
+            <option value="4k">4K · 45 Mbps</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap" id="top">
+    <div class="notice" role="note">
+      <span class="pill">SIMULASI</span>
+      <p>Semua game di sini fiktif dan tidak ada game sungguhan yang dijalankan. Antrean, ping, dan bitrate dibuat acak hanya untuk meniru sesi streaming.</p>
+    </div>
+
+    <section class="hero" id="hero" aria-label="Game pilihan"></section>
+
+    <section id="pustaka" aria-label="Pustaka game">
+      <div class="toolbar">
+        <h2>Pustaka <span class="count" id="count"></span></h2>
+        <div class="tools">
+          <input class="search" id="q" type="search" placeholder="Cari judul" aria-label="Cari game" autocomplete="off">
+          <button class="chip" id="favOnly" type="button" data-favonly aria-pressed="false">♥ Favorit saja</button>
+          <select id="sort" aria-label="Urutkan">
+            <option value="rec">Urutan asli</option>
+            <option value="az">A sampai Z</option>
+          </select>
+        </div>
+      </div>
+      <div class="grid" id="grid"></div>
+    </section>
+
+    <footer class="foot">
+      AwanPlay adalah demo antarmuka cloud gaming. Ganti judul dan foto lewat <code>js/games.js</code>.
+    </footer>
+  </main>
+
+  <!-- detail game -->
+  <div class="modal" id="detail" role="dialog" aria-modal="true" aria-labelledby="dTitle" hidden>
+    <div class="sheet">
+      <div class="cover" id="dCover"></div>
+      <div class="info">
+        <div class="eyebrow" id="dGenre"></div>
+        <h2 id="dTitle"></h2>
+        <p id="dDesc"></p>
+        <div class="actions">
+          <button class="btn" id="dPlay" type="button">Mainkan (simulasi)</button>
+          <button class="btn ghost" id="dFav" type="button" aria-pressed="false">Favorit</button>
+          <button class="btn ghost" id="dClose" type="button">Tutup</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- sesi streaming palsu -->
+  <div class="play" id="play" role="dialog" aria-modal="true" aria-label="Sesi simulasi" hidden>
+    <div class="boot" id="boot">
+      <div class="cover" id="bootCover"></div>
+      <h3 id="bootTitle"></h3>
+      <div class="stage" id="stage"></div>
+      <div class="track"><div class="bar-fill" id="fill"></div></div>
+      <div class="q" id="queue"></div>
+      <button class="btn ghost" id="cancel" type="button">Batal</button>
+    </div>
+    <div class="stream" id="stream" hidden>
+      <canvas id="cv"></canvas>
+      <div class="hud" aria-hidden="true">
+        <span id="hPing"></span><span id="hFps"></span><span id="hBr"></span><span id="hLoss" class="good"></span><span id="hTime"></span>
+      </div>
+      <button class="exit" id="exit" type="button">Keluar (Esc)</button>
+      <div class="wm">SIMULASI · bukan game asli</div>
+      <div class="help">Geser kursor atau tekan ← → untuk menggerakkan pesawat</div>
+    </div>
+  </div>
+
+  <script src="js/games.js"></script>
+  <script src="js/art.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
